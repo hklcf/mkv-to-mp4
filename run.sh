@@ -2,11 +2,11 @@
 PATH=finished
 
 if [ ! -e $PATH ]; then
-  mkdir $PATH
+  /bin/mkdir $PATH
 fi
 
 for i in *.mkv
 do
   ./ffmpeg -i $i -vf subtitles=$i $PATH/$i.mp4
-  mv $i $PATH/$i
+  /bin/mv $i $PATH/$i
 done

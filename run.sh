@@ -7,6 +7,7 @@ fi
 
 for i in *.mkv
 do
-  ./ffmpeg -i $i -vf subtitles=$i $PATH/$i.mp4
+  output="${i/mkv/mp4}"
+  ./ffmpeg -i $i -vf subtitles=$i $PATH/$output
   /bin/mv $i $PATH/$i
 done

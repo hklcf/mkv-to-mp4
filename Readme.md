@@ -16,7 +16,7 @@ This script tested on Debian 7 only.
 
 ### General Usage
 ```
-usage: run.sh [-s SIZE]
+usage: run.sh [-s SIZE] [-o OUTPUT]
 
 optional arguments:
   -s SIZE, --size SIZE

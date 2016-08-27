@@ -7,6 +7,10 @@ do
         SIZE="$2"
         shift # past argument
         ;;
+        -o|--output)
+        OUTPUT="$2"
+        shift # past argument
+        ;;
         *)
         # unknown option
         ;;
@@ -15,7 +19,12 @@ do
 done
 
 PROCESS_PATH=processing
-OUTPUT_PATH=finished
+
+if [ $OUTPUT ]; then
+    OUTPUT_PATH=$OUTPUT
+else
+    OUTPUT_PATH=finished
+fi
 
 if [ ! -e $PROCESS_PATH ]; then
     /bin/mkdir $PROCESS_PATH

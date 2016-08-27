@@ -21,7 +21,7 @@ usage: run.sh [-s SIZE]
 optional arguments:
   -s SIZE, --size SIZE
                           Set resolution of the video. (Default same as original)
-  -o OPTPUT, --output OUTPUT
+  -o OUTPUT, --output OUTPUT
                           Set output file location. (Default: finished)
 ```
 

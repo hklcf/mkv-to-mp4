@@ -17,4 +17,7 @@ This script tested on Debian 7 only.
 ### General Usage
 ```sh
 usage: run.sh [-s SIZE]
+
+optional arguments:
+  -s, --size          set the video resolution
 ```

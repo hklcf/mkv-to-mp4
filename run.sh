@@ -23,9 +23,9 @@ if [ ! -e $OUTPUT_PATH ]; then
 fi
 
 if [ $SIZE ]; then
-    COMMAND=./ffmpeg -i "$PROCESS_PATH/$i" -vf scale="-2:$SIZE" subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"
+    COMMAND="${./ffmpeg -i "$PROCESS_PATH/$i" -vf scale="-2:$SIZE" subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"}"
 else
-    COMMAND=./ffmpeg -i "$PROCESS_PATH/$i" -vf subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"
+    COMMAND="${./ffmpeg -i "$PROCESS_PATH/$i" -vf subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"}"
 fi
 
 for i in *.mkv

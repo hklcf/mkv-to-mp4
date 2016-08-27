@@ -1,14 +1,17 @@
 #!/bin/bash
-for j in "$@"
+while [[ $# -gt 1 ]]
 do
-    case $j in
-        -s=*|--size=*)
-        SIZE="${j#*=}"
+    key="$1"
+    case $key in
+        -s|--size)
+        SIZE="$2"
+        shift # past argument
         ;;
         *)
         # unknown option
         ;;
     esac
+    shift # past argument or value
 done
 
 PROCESS_PATH=processing
@@ -26,7 +29,6 @@ for i in *.mkv
 do
     /bin/mv "$i" "$PROCESS_PATH/$i"
     output="${i/mkv/mp4}"
-    #./ffmpeg -i "$PROCESS_PATH/$i" -vf subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"
     if [ $SIZE ]; then
         ./ffmpeg -i "$PROCESS_PATH/$i" -vf scale="-2:$SIZE" subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"
     else

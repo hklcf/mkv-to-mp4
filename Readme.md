@@ -15,9 +15,16 @@ after this has been done, you can type `./run.sh` to run the script.
 This script tested on Debian 7 only.
 
 ### General Usage
-```sh
+```
 usage: run.sh [-s SIZE]
 
 optional arguments:
   -s, --size          set the video resolution
 ```
+
+### Example
+```sh
+./run.sh -s 480
+```
+
+This will convert the mkv to a 480p mp4 file.

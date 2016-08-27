@@ -10,7 +10,7 @@ chmod 755 run.sh
 after this has been done, you can type `./run.sh` to run the script.
 
 ### Requirement
-- Debian
+- Linux (32bit / 64bit)
 
 This script tested on Debian 7 only.
 

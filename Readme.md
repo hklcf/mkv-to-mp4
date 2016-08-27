@@ -22,7 +22,7 @@ optional arguments:
   -s SIZE, --size SIZE
                           Set resolution of the video. (Default same as original)
   -o OUTPUT, --output OUTPUT
-                          Set output file location. (Default: finished)
+                          Set output file path. (Default: finished)
 ```
 
 ### Example

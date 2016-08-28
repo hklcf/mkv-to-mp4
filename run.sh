@@ -7,6 +7,10 @@ do
         SIZE="$2"
         shift # past argument
         ;;
+        -o|--output)
+        OUTPUT="$2"
+        shift # past argument
+        ;;
         *)
         # unknown option
         ;;
@@ -15,7 +19,12 @@ do
 done
 
 PROCESS_PATH=processing
-OUTPUT_PATH=finished
+
+if [ $OUTPUT ]; then
+    OUTPUT_PATH=$OUTPUT
+else
+    OUTPUT_PATH=finished
+fi
 
 if [ ! -e $PROCESS_PATH ]; then
     /bin/mkdir $PROCESS_PATH
@@ -30,7 +39,7 @@ do
     /bin/mv "$i" "$PROCESS_PATH/$i"
     output="${i/mkv/mp4}"
     if [ $SIZE ]; then
-        ./ffmpeg -i "$PROCESS_PATH/$i" -vf scale="-2:$SIZE" subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"
+        ./ffmpeg -i "$PROCESS_PATH/$i" -vf scale="-2:$SIZE",subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"
     else
         ./ffmpeg -i "$PROCESS_PATH/$i" -vf subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"
     fi

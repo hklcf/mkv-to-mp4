@@ -39,7 +39,7 @@ do
     /bin/mv "$i" "$PROCESS_PATH/$i"
     output="${i/mkv/mp4}"
     if [ $SIZE ]; then
-        ./ffmpeg -i "$PROCESS_PATH/$i" -vf scale="-2:$SIZE" subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"
+        ./ffmpeg -i "$PROCESS_PATH/$i" -vf scale="-2:$SIZE",subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"
     else
         ./ffmpeg -i "$PROCESS_PATH/$i" -vf subtitles="$PROCESS_PATH/$i" "$OUTPUT_PATH/$output"
     fi

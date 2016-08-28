@@ -23,7 +23,7 @@ do
 done
 
 function debug {
-    if [ $DEBUG ]; then
+    if [ $DEBUG=YES ]; then
         echo $1
     fi
 }

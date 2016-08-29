@@ -58,26 +58,26 @@ if [ ! -e $OUTPUT_PATH ]; then
     debug "mkdir $OUTPUT_PATH"
 fi
 
-command="./ffmpeg -i $PROCESS_PATH/$i "
-debug "set command: ./ffmpeg -i $PROCESS_PATH/$i "
-if [ $SIZE ] && [ $SUBTITLES ]; then
-    command+="-vf scale=-2:$SIZE,subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
-    debug "set command: -vf scale=-2:$SIZE,subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
-else
-    if [ $SIZE ]; then
-        command+="-vf scale=-2:$SIZE "
-        debug "set command: -vf scale=-2:$SIZE "
-    fi
-    if [ $SUBTITLES ]; then
-        command+="-vf subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
-        debug "set command: -vf subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
-    fi
-fi
-command+="$OUTPUT_PATH/$output"
-debug "set command: $OUTPUT_PATH/$output"
-
 for i in *.mkv
 do
+    command="./ffmpeg -i $PROCESS_PATH/$i "
+    debug "set command: ./ffmpeg -i $PROCESS_PATH/$i "
+    if [ $SIZE ] && [ $SUBTITLES ]; then
+        command+="-vf scale=-2:$SIZE,subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
+        debug "set command: -vf scale=-2:$SIZE,subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
+    else
+        if [ $SIZE ]; then
+            command+="-vf scale=-2:$SIZE "
+            debug "set command: -vf scale=-2:$SIZE "
+        fi
+        if [ $SUBTITLES ]; then
+            command+="-vf subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
+            debug "set command: -vf subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
+        fi
+    fi
+    command+="$OUTPUT_PATH/$output"
+    debug "set command: $OUTPUT_PATH/$output"
+
     /bin/mv "$i" "$PROCESS_PATH/$i"
     debug "move $i to $PROCESS_PATH/$i"
     output="${i/mkv/mp4}"

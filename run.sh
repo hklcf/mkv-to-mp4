@@ -12,11 +12,7 @@ do
             shift # past argument
             ;;
         -st|--subtitles)
-            if [ $2 ]; then
-                SUBTITLES="$2"
-            else
-                SUBTITLES=0 # set default to 0
-            fi
+            SUBTITLES="$2"
             shift # past argument
             ;;
         --debug)

@@ -60,6 +60,10 @@ fi
 
 for i in *.mkv
 do
+    /bin/mv "$i" "$PROCESS_PATH/$i"
+    debug "move $i to $PROCESS_PATH/$i"
+    output="${i/mkv/mp4}"
+    debug "set out name to $output"
     command="./ffmpeg -i $PROCESS_PATH/$i "
     debug "set command: ./ffmpeg -i $PROCESS_PATH/$i "
     if [ $SIZE ] && [ $SUBTITLES ]; then
@@ -77,13 +81,8 @@ do
     fi
     command+="$OUTPUT_PATH/$output"
     debug "set command: $OUTPUT_PATH/$output"
-
-    /bin/mv "$i" "$PROCESS_PATH/$i"
-    debug "move $i to $PROCESS_PATH/$i"
-    output="${i/mkv/mp4}"
-    debug "set out name to $output"
     $command
-    debug "run command"
+    debug "run $command"
     /bin/mv "$PROCESS_PATH/$i" "$OUTPUT_PATH/$i"
     debug "move $PROCESS_PATH/$i to $OUTPUT_PATH/$i"
 done

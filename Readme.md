@@ -16,13 +16,15 @@ This script tested on Debian 7 only.
 
 ### General Usage
 ```
-usage: run.sh [-s SIZE] [-o OUTPUT]
+usage: run.sh [-s SIZE] [-o OUTPUT] [--debug]
 
 optional arguments:
   -s SIZE, --size SIZE
                           Set resolution of the video. (Default same as original)
   -o OUTPUT, --output OUTPUT
                           Set output file path. (Default: finished)
+  --debug
+                          Debug
 ```
 
 ### Example

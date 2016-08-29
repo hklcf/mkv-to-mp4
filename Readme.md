@@ -16,13 +16,15 @@ This script tested on Debian 7 only.
 
 ### General Usage
 ```
-usage: run.sh [-s SIZE] [-o OUTPUT] [--debug]
+usage: run.sh [-s SIZE] [-o OUTPUT] [-st SUBTITLES] [--debug]
 
 optional arguments:
   -s SIZE, --size SIZE
                           Set resolution of the video. (Default same as original)
   -o OUTPUT, --output OUTPUT
                           Set output file path. (Default: finished)
+  -st SUBTITLES, --subtitles SUBTITLES
+                          Set subtitles
   --debug
                           Debug
 ```

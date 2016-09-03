@@ -24,7 +24,7 @@ optional arguments:
   -o OUTPUT, --output OUTPUT
                           Set output file path. (Default: finished)
   -st SUBTITLES, --subtitles SUBTITLES
-                          Set subtitles
+                          To render which subtitles stream from that file
   --debug
                           Debug
 ```

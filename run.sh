@@ -35,6 +35,7 @@ function debug {
 }
 
 PROCESS_PATH=processing
+FFMPEG=./ffmpeg
 
 if [ $OUTPUT ]; then
     OUTPUT_PATH=$OUTPUT
@@ -56,29 +57,27 @@ fi
 
 for i in *.mkv
 do
-    /bin/mv "$i" "$PROCESS_PATH/$i"
-    debug "move $i to $PROCESS_PATH/$i"
+    PROCESS_FILE=$PROCESS_PATH/$i
+    /bin/mv "$i" "$PROCESS_FILE"
+    debug "move $i to $PROCESS_FILE"
     output="${i/mkv/mp4}"
-    debug "set out name to $output"
-    command="./ffmpeg -i $PROCESS_PATH/$i "
-    debug "set command: ./ffmpeg -i $PROCESS_PATH/$i "
+    debug "set output name to $output"
+    OUTPUT_FILE=$OUTPUT_PATH/$output
     if [ $SIZE ] && [ $SUBTITLES ]; then
-        command+="-vf scale=-2:$SIZE,subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
-        debug "set command: -vf scale=-2:$SIZE,subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
+        command=$($FFMPEG -i "$PROCESS_FILE" -vf scale=-2:$SIZE,subtitles="$PROCESS_FILE":si=$SUBTITLES "$OUTPUT_FILE")
+        debug "set command: $FFMPEG -i $PROCESS_FILE -vf scale=-2:$SIZE,subtitles=$PROCESS_FILE:si=$SUBTITLES $OUTPUT_FILE"
     else
         if [ $SIZE ]; then
-            command+="-vf scale=-2:$SIZE "
-            debug "set command: -vf scale=-2:$SIZE "
+            command=$($FFMPEG -i "$PROCESS_FILE" -vf scale=-2:$SIZE "$OUTPUT_FILE")
+            debug "set command: $FFMPEG -i $PROCESS_FILE -vf scale=-2:$SIZE $OUTPUT_FILE"
         fi
         if [ $SUBTITLES ]; then
-            command+="-vf subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
-            debug "set command: -vf subtitles=$PROCESS_PATH/$i:si=$SUBTITLES "
+            command=$($FFMPEG -i "$PROCESS_FILE" -vf subtitles="$PROCESS_FILE":si=$SUBTITLES "$OUTPUT_FILE")
+            debug "set command: $FFMPEG -i $PROCESS_FILE -vf subtitles=$PROCESS_FILE:si=$SUBTITLES $OUTPUT_FILE"
         fi
     fi
-    command+="$OUTPUT_PATH/$output"
-    debug "set command: $OUTPUT_PATH/$output"
     $command
     debug "run $command"
-    /bin/mv "$PROCESS_PATH/$i" "$OUTPUT_PATH/$i"
-    debug "move $PROCESS_PATH/$i to $OUTPUT_PATH/$i"
+    /bin/mv "$PROCESS_FILE" "$OUTPUT_PATH/$i"
+    debug "move $PROCESS_FILE to $OUTPUT_PATH/$i"
 done

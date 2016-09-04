@@ -30,7 +30,7 @@ done
 
 function debug {
     if [ $DEBUG ]; then
-        echo "[Debug] $1"
+        echo -e "[Debug] $1\n"
     fi
 }
 

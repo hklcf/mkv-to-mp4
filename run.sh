@@ -77,7 +77,7 @@ do
         fi
     fi
     $command
-    debug "run $command"
+    debug "run command"
     /bin/mv "$PROCESS_FILE" "$OUTPUT_PATH/$i"
     debug "move $PROCESS_FILE to $OUTPUT_PATH/$i"
 done

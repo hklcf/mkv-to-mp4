@@ -70,10 +70,12 @@ do
         if [ $SIZE ]; then
             command=$($FFMPEG -i "$PROCESS_FILE" -vf scale=-2:$SIZE "$OUTPUT_FILE")
             debug "set command: $FFMPEG -i $PROCESS_FILE -vf scale=-2:$SIZE $OUTPUT_FILE"
-        fi
-        if [ $SUBTITLES ]; then
+        elif [ $SUBTITLES ]; then
             command=$($FFMPEG -i "$PROCESS_FILE" -vf subtitles="$PROCESS_FILE":si=$SUBTITLES "$OUTPUT_FILE")
             debug "set command: $FFMPEG -i $PROCESS_FILE -vf subtitles=$PROCESS_FILE:si=$SUBTITLES $OUTPUT_FILE"
+        else
+            command=$($FFMPEG -i "$PROCESS_FILE" "$OUTPUT_FILE")
+            debug "set command: $FFMPEG -i $PROCESS_FILE $OUTPUT_FILE"
         fi
     fi
     $command
